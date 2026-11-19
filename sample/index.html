@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b3b">
+  <title>Veridex | Underwriting workbench</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#workbench" aria-label="Veridex home"><span class="brand-mark">v</span><span class="brand-name">veridex<span>risk platform</span></span></a>
+      <div class="tenant-wrap">
+        <label for="tenantSelect">Workspace</label>
+        <div class="tenant-select-wrap"><span class="tenant-avatar">N</span><select id="tenantSelect" aria-label="Select tenant"><option>Northstar Mutual</option><option>Summit Specialty</option><option>Veridex Demo</option></select><span class="select-caret">⌄</span></div>
+        <div class="tenant-meta">US Commercial <span>·</span> Enterprise</div>
+      </div>
+      <div class="nav-group"><div class="nav-caption">Underwriting</div>
+        <button class="nav-item is-active" data-route="workbench"><span class="nav-icon">▤</span><span>Work queue</span><span class="nav-count">18</span></button>
+        <button class="nav-item" data-route="portfolio"><span class="nav-icon">◫</span><span>Portfolio</span></button>
+        <button class="nav-item" data-route="rules"><span class="nav-icon">⌘</span><span>Appetite & authority</span></button>
+        <button class="nav-item" data-route="audit"><span class="nav-icon">◷</span><span>Audit & controls</span></button>
+      </div>
+      <div class="nav-group secondary-nav"><div class="nav-caption">Platform</div>
+        <button class="nav-item" data-route="integrations"><span class="nav-icon">⇄</span><span>Integrations</span></button>
+        <button class="nav-item" data-route="settings"><span class="nav-icon">⚙</span><span>Configuration</span></button>
+      </div>
+      <div class="sidebar-bottom">
+        <button class="plan-card" id="planToggle" aria-label="Switch between standalone and bundle plans"><span class="plan-top"><span class="plan-icon">✳</span><span id="planLabel">RISK SUITE · BUNDLE</span><span class="plan-more">•••</span></span><strong id="planName">Underwriting + 2 products</strong><span class="plan-products" id="planProducts">Claims <i></i> Analytics</span><span class="plan-manage">View product access <b>↗</b></span></button>
+        <button class="user-profile" id="profileButton"><span class="user-avatar">AM</span><span class="user-copy"><strong>Alex Morgan</strong><small>Senior underwriter</small></span><span class="profile-more">•••</span></button>
+      </div>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">v</span> veridex</div>
+        <div class="breadcrumbs"><span>Northstar Mutual</span><b>/</b><strong id="breadcrumbCurrent">Work queue</strong></div>
+        <div class="topbar-actions">
+          <div class="global-search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search submissions" aria-label="Search submissions"><kbd>⌘ K</kbd></div>
+          <span class="env-badge"><i></i> Sandbox</span>
+          <button class="icon-button notification-button" id="notifications" aria-label="Notifications">♧<i></i></button>
+          <button class="help-button" id="help">?</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="route-page is-visible" id="route-workbench" aria-labelledby="pageTitle">
+          <div class="page-heading">
+            <div><div class="overline"><span class="overline-mark"></span> UW OPERATIONS <span class="overline-sep">/</span> WED, NOV 19</div><h1 id="pageTitle">Submission workbench</h1><p class="page-description">Triage new business, renewals, and midterm changes in one place.</p></div>
+            <div class="heading-actions"><button class="button button-secondary" id="exportQueue"><span>↥</span> Export queue</button><button class="button button-primary" id="newSubmission"><span class="button-plus">＋</span> New submission</button></div>
+          </div>
+
+          <div class="summary-strip" id="summaryStrip">
+            <button class="summary-card selected" data-filter="all"><span class="summary-label">My open queue</span><strong>18</strong><span class="summary-foot"><i class="summary-dot dot-navy"></i> All active work</span></button>
+            <button class="summary-card" data-filter="referral"><span class="summary-label">Needs authority</span><strong>3</strong><span class="summary-foot"><i class="summary-dot dot-orange"></i> 1 due in 2 hours</span></button>
+            <button class="summary-card" data-filter="broker"><span class="summary-label">Waiting on broker</span><strong>6</strong><span class="summary-foot"><i class="summary-dot dot-blue"></i> 2 replies received</span></button>
+            <button class="summary-card" data-filter="bind"><span class="summary-label">Bind ready</span><strong>5</strong><span class="summary-foot"><i class="summary-dot dot-green"></i> $684k quoted premium</span></button>
+            <div class="summary-aside"><span class="aside-label">TEAM RESPONSE</span><strong>1.8 <small>days</small></strong><span class="aside-trend">↓ 0.4d <span>vs. last month</span></span><div class="mini-bars"><i style="height:13px"></i><i style="height:19px"></i><i style="height:11px"></i><i style="height:23px"></i><i style="height:17px"></i><i style="height:26px"></i><i style="height:21px"></i><i style="height:30px"></i></div></div>
+          </div>
+
+          <div class="workbench-grid">
+            <section class="queue-panel card-surface" aria-label="Submission queue">
+              <div class="queue-head"><div><div class="section-heading-row"><h2>Assigned to me</h2><span class="count-badge" id="visibleCount">5</span><span class="live-status"><i></i> Live queue</span></div><p>Prioritized by urgency, renewal date, and referral SLA</p></div><div class="queue-head-actions"><button class="icon-button filter-button" id="filters" aria-label="Filter queue">☷<span class="filter-dot"></span></button><button class="icon-button" id="queueMenu" aria-label="Queue options">•••</button></div></div>
+              <div class="queue-toolbar"><div class="queue-tabs" id="queueTabs"><button class="active" data-filter="all">All <span>18</span></button><button data-filter="new">New business <span>8</span></button><button data-filter="renewal">Renewals <span>7</span></button><button data-filter="endorsement">Endorsements <span>3</span></button></div><label class="sort-control">Sort <select id="sortQueue" aria-label="Sort submissions"><option value="priority">Priority</option><option value="due">Due date</option><option value="premium">Premium</option></select><b>⌄</b></label></div>
+              <div class="queue-list-head"><span>SUBMISSION / BROKER</span><span>LINE</span><span>STAGE</span><span>PREMIUM</span><span>DUE</span><span></span></div>
+              <div id="queueRows" class="queue-rows"></div>
+              <div class="queue-footer"><span>Showing <strong id="queueShowing">5</strong> of 18 assignments</span><button id="loadMore">View full queue <b>↗</b></button></div>
+            </section>
+            <aside class="right-rail">
+              <section class="rail-card capacity-card"><div class="rail-title"><div><span class="rail-kicker">PORTFOLIO CAPACITY</span><h3>General liability</h3></div><button class="more-button" data-route="portfolio" aria-label="Open portfolio">•••</button></div><div class="capacity-amount"><strong>$32.4M</strong><span>of $48M</span><b>68%</b></div><div class="capacity-track"><i style="width:68%"></i><i class="capacity-marker" style="left:75%"></i></div><div class="capacity-foot"><span>Written premium · Northeast</span><span>Resets Jan 01</span></div><div class="risk-note"><span class="risk-note-icon">!</span><span><strong>Near watch threshold</strong><small>Coastal property at 78% of sublimit</small></span><button data-route="portfolio">Review</button></div></section>
+              <section class="rail-card attention-card"><div class="rail-title"><div><span class="rail-kicker">NEXT BEST ACTION</span><h3>Keep work moving</h3></div><span class="attention-count">3</span></div><button class="attention-item" data-open-case="UW-2841"><span class="attention-symbol symbol-orange">↗</span><span><strong>Authority approval due</strong><small>Harbor Point · 2 hours left</small></span><b>›</b></button><button class="attention-item" data-open-case="UW-2819"><span class="attention-symbol symbol-blue">↙</span><span><strong>Broker sent updated loss runs</strong><small>Meridian Foods · 12 min ago</small></span><b>›</b></button><button class="attention-item" data-open-case="UW-2766"><span class="attention-symbol symbol-purple">◷</span><span><strong>Start renewal review</strong><small>Northwind Logistics · 21 days</small></span><b>›</b></button></section>
+              <section class="rail-card compliance-card"><span class="rail-kicker">CONTROL CHECK</span><div class="control-title"><span class="control-check">✓</span><div><h3>Rules are current</h3><p>Appetite set <strong>v2.8</strong> · Published Nov 12</p></div></div><button data-route="rules">Review appetite & authority <b>↗</b></button></section>
+            </aside>
+          </div>
+        </section>
+
+        <section class="route-page" id="route-portfolio" aria-labelledby="portfolioTitle"><div class="page-heading"><div><div class="overline">UW OPERATIONS <span class="overline-sep">/</span> MANAGEMENT VIEW</div><h1 id="portfolioTitle">Portfolio & capacity</h1><p class="page-description">Monitor plan performance, exposure concentration, and appetite utilization.</p></div><button class="button button-secondary" id="portfolioExport">↥ Export report</button></div><div id="portfolioView" class="alternate-content"></div></section>
+        <section class="route-page" id="route-rules" aria-labelledby="rulesTitle"><div class="page-heading"><div><div class="overline">UW OPERATIONS <span class="overline-sep">/</span> CONFIGURATION</div><h1 id="rulesTitle">Appetite & authority</h1><p class="page-description">Set the guardrails behind eligibility, referral, and pricing decisions.</p></div><div class="heading-actions"><span class="version-pill"><i></i> Published · v2.8</span><button class="button button-primary" id="publishRules">Publish changes</button></div></div><div id="rulesView" class="alternate-content"></div></section>
+        <section class="route-page" id="route-audit" aria-labelledby="auditTitle"><div class="page-heading"><div><div class="overline">UW OPERATIONS <span class="overline-sep">/</span> GOVERNANCE</div><h1 id="auditTitle">Audit & controls</h1><p class="page-description">A complete record of case activity, rule execution, and approvals.</p></div><div class="heading-actions"><button class="button button-secondary" id="auditFilters">☷ Filters</button><button class="button button-secondary" id="auditExport">↥ Export log</button></div></div><div id="auditView" class="alternate-content"></div></section>
+        <section class="route-page" id="route-integrations" aria-labelledby="integrationTitle"><div class="page-heading"><div><div class="overline">PLATFORM <span class="overline-sep">/</span> CONNECTIVITY</div><h1 id="integrationTitle">Integrations</h1><p class="page-description">Connected data sources, carrier rating, broker exchange, and PAS handoff.</p></div><button class="button button-primary" id="addIntegration">＋ Add integration</button></div><div id="integrationsView" class="alternate-content"></div></section>
+        <section class="route-page" id="route-settings" aria-labelledby="settingsTitle"><div class="page-heading"><div><div class="overline">PLATFORM <span class="overline-sep">/</span> ADMINISTRATION</div><h1 id="settingsTitle">Configuration</h1><p class="page-description">Manage tenant access, product packaging, and workflow defaults.</p></div></div><div id="settingsView" class="alternate-content"></div></section>
+        <footer class="app-footer"><span>VERIDEX UNDERWRITING <b>·</b> NORTHSTAR MUTUAL</span><span>BUILD 2.9.0 <b>·</b> SANDBOX</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"><aside class="case-drawer" id="caseDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle"></aside></div>
+  <div class="dialog-backdrop" id="dialogBackdrop" aria-hidden="true"><section class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></section></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
